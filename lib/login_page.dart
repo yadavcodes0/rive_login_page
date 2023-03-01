@@ -21,16 +21,16 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: const Color(0xffD6E2EA),
       body: SizedBox(
-        width: size.width,
         height: size.height,
+        width: size.width,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: size.width,
                 height: 200,
+                width: size.width,
                 child: RiveAnimation.asset(
                   "assets/login.riv",
                   stateMachines: const ["Login Machine"],
@@ -99,10 +99,9 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
                 color: Colors.purple,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                    borderRadius: BorderRadius.circular(12)),
                 onPressed: () {
-                  // todo: login
+                  //todo login
                 },
                 child: const Text(
                   "Login",
@@ -118,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                     const Text("Don't have an account?"),
                     TextButton(
                       onPressed: () {
-                        // todo: navigate to register page
+                        //todo register
                       },
                       child: const Text(
                         "Register",
@@ -127,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-              ),
+              )
             ],
           ),
         ),
