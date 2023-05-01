@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _showPassword = false;
+
   StateMachineController? _controller;
   SMIInput<bool>? _isChecking;
   SMIInput<bool>? _isHandsUp;
@@ -46,19 +47,17 @@ class _LoginPageState extends State<LoginPage> {
                   height: 300,
                   width: size.width,
                   child: RiveAnimation.asset(
-                    "assets/login.riv",
+                    'assets/login.riv',
                     stateMachines: const ["Login Machine"],
                     onInit: (artboard) {
                       _controller = StateMachineController.fromArtboard(
-                        artboard,
-                        "Login Machine",
-                      );
+                          artboard, "Login Machine");
                       if (_controller == null) return;
                       artboard.addController(_controller!);
-                      _isChecking = _controller?.findInput("isChecking");
-                      _isHandsUp = _controller?.findInput("isHandsUp");
-                      _trigSuccess = _controller?.findInput("trigSuccess");
-                      _trigFail = _controller?.findInput("trigFail");
+                      _isChecking = _controller!.findInput("isChecking")!;
+                      _isHandsUp = _controller!.findInput("isHandsUp")!;
+                      _trigSuccess = _controller!.findInput("trigSuccess")!;
+                      _trigFail = _controller!.findInput("trigFail")!;
                     },
                   ),
                 ),
@@ -77,10 +76,9 @@ class _LoginPageState extends State<LoginPage> {
                       _isChecking!.change(false);
                     });
                   },
-                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: "Email",
-                    prefixIcon: const Icon(Icons.mail),
+                    prefixIcon: const Icon(Icons.email),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -104,6 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   decoration: InputDecoration(
                     hintText: "Password",
+                    prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -119,7 +118,6 @@ class _LoginPageState extends State<LoginPage> {
                           ? Icons.visibility_off
                           : Icons.visibility),
                     ),
-                    prefixIcon: const Icon(Icons.lock),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -128,11 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 10),
                 const Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    "Forgot your password?",
-                    textAlign: TextAlign.right,
-                    style: TextStyle(decoration: TextDecoration.underline),
-                  ),
+                  child: Text('Forgot Password?'),
                 ),
                 const SizedBox(height: 10),
                 MaterialButton(
@@ -162,7 +156,9 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: const Text(
                     "Login",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -171,19 +167,19 @@ class _LoginPageState extends State<LoginPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Don't have an account?"),
+                      const Text('Don\'t have an account?'),
                       TextButton(
-                        onPressed: () {
-                          //todo register
-                        },
+                        onPressed: () {},
                         child: const Text(
-                          "Register",
-                          style: TextStyle(color: Colors.black),
+                          'Register',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

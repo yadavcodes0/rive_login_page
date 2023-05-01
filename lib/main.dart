@@ -13,25 +13,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarIconBrightness: Brightness.dark,
+    return AnnotatedRegion(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            elevation: 0,
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.dark,
+            ),
           ),
         ),
+        title: "rive animation",
+        initialRoute: "/",
+        routes: {
+          "/": (context) => const LoginPage(),
+          "/HomePage": (context) => const HomePage(),
+          "/loginPage": (context) => const LoginPage(),
+          "/registerPage": (context) => const RegisterPage(),
+        },
       ),
-      title: "rive animation",
-      initialRoute: "/",
-      routes: {
-        "/": (context) => const MyHomePage(),
-        "/HomePage": (context) => const HomePage(),
-        "/loginPage": (context) => const LoginPage(),
-        "/registerPage": (context) => const RegisterPage(),
-      },
     );
   }
 }
